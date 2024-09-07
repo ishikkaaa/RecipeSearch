@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Recipe Search</h1>
+    <form method="POST">
+        <input type="text" name="search_query" value="{{ search_query }}" placeholder="Search for recipes">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for recipe in recipes %}
+            <li>
+                <a href="{{ url_for('view_recipe', recipe_id=recipe.id, search_query=search_query) }}">
+                    {{ recipe.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
